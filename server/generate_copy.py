@@ -106,8 +106,9 @@ def animate(i):
 anim = animation.FuncAnimation(fig, animate,
                                interval=200, blit=False, repeat=False)
 # anim.save('animation.mp4')
-writergif = animation.PillowWriter(fps=10)
-anim.save('filename2.gif', writer=writergif)
+anim.save('result.mp4', fps=5, extra_args=['-vcodec', 'libx264'])
+# writergif = animation.PillowWriter(fps=10)
+# anim.save('filename2.gif', writer=writergif)
 # ax.scatter(s_x[-1], s_y[-1], s=60, label='EKF Goal', c='r')
 # ax.scatter(x[-1], y[-1], s=60, label='Goal', c='b')
 # ax.legend(loc='best')
