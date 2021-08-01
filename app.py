@@ -6,8 +6,14 @@ from flask import Flask, request, jsonify, render_template, redirect, url_for
 import pickle
 import joblib
 import time
+import os
 # import generate_copy
 import runpy
+import io
+import random
+from flask import Response
+from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
+from matplotlib.figure import Figure
 
 # from matplotlib.backends.backend_agg import FigureCanvasAgg as FigureCanvas
 # from matplotlib.figure import Figure
@@ -16,9 +22,25 @@ app = Flask(__name__)
 # app.config['UPLOAD_EXTENSIONS'] = ['.txt']
 
 
+# @app.route('/plot.png')
+# def plot_png():
+#     fig = runpy.run_path(path_name='generate_path.py')
+#     output = io.BytesIO()
+#     FigureCanvas(fig).print_png(output)
+#     return Response(output.getvalue(), mimetype='image/png')
+
+
 @app.route('/input.html', methods=['GET', 'POST'])
 @app.route('/input', methods=['GET', 'POST'])
 def input():
+    if os.path.isfile('./static/path.jpg'):
+        os.remove("./static/path.jpg")
+    if os.path.isfile('./static/result.mp4'):
+        os.remove("./static/result.mp4")
+    if os.path.isfile('x_y_bsm_sanitized.txt'):
+        os.remove("x_y_bsm_sanitized.txt")
+    if os.path.isfile('x_y_bsm.txt'):
+        os.remove("x_y_bsm.txt")
     if request.method == 'POST':
         raw_file = request.files['raw']
         sanitized_file = request.files['sanitized']
@@ -44,6 +66,10 @@ def input():
 # #     return render_template("loading.html")
 # def redirect():
 #     return redirect(url_for('main'))
+
+@app.route("/imageshow.html")
+def imageShow():
+    return render_template("imageshow.html")
 
 
 @app.route("/main.html")
