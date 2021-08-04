@@ -1,3 +1,4 @@
+import threading
 import osmnx as ox
 from matplotlib import animation
 import matplotlib.pyplot as plt
@@ -20,14 +21,6 @@ from matplotlib.figure import Figure
 
 app = Flask(__name__)
 # app.config['UPLOAD_EXTENSIONS'] = ['.txt']
-
-
-# @app.route('/plot.png')
-# def plot_png():
-#     fig = runpy.run_path(path_name='generate_path.py')
-#     output = io.BytesIO()
-#     FigureCanvas(fig).print_png(output)
-#     return Response(output.getvalue(), mimetype='image/png')
 
 
 @app.route('/input.html', methods=['GET', 'POST'])
@@ -54,6 +47,13 @@ def input():
             runpy.run_path(path_name='generate_path.py')
             return redirect(url_for('main'))
     return render_template("input.html")
+
+
+@app.route('/live.html', methods=["GET", "POST"])
+@app.route('/live', methods=["GET", "POST"])
+def live():
+    runpy.run_path(path_name='generate_path_live.py')
+    return render_template("live.html")
 
 
 # @app.route("/loading.html")
@@ -109,4 +109,10 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
+    # app.run(debug=True)
+    from livereload import Server
+    server = Server(app.wsgi_app)
+    # server.watch('x_y_bsm_sanitized_test.txt')
+    server.watch('x_y_bsm_test.txt')
+    server.watch('x_y_bsm_sanitized_test.txt')
+    server.serve()
