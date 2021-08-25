@@ -5,32 +5,70 @@ const Trajectory_sanitized = require('../../model/trajectory_sanitized');
 const config = require('config');
 let fs = require('fs');
 
-// let dataOut = '';
-// const readTextFile = async (fileName) => {
-//   let dataText = '';
-//   let fs = require('fs');
-//   await fs.readFile(fileName, 'utf8', (err, data) => {
-//     console.log('OK: ' + fileName);
-//     dataOut = data;
-//     return data
-//     // console.log(dataText);
-//   });
-//   return dataText;
-// }
+async function run() {
+  let data = await fs.readFileSync('../data/x_y_bsm.txt', 'utf8');
+  let data_sanitized = await fs.readFileSync(
+    '../data/x_y_bsm_sanitized.txt',
+    'utf8'
+  );
+  await Trajectory_raw.replaceOne(
+    { name: 'only data' },
+    { name: 'only data', data: data }
+  );
+  await Trajectory_sanitized.replaceOne(
+    { name: 'only data' },
+    { name: 'only data', data: data_sanitized }
+  );
+}
 
-// Post the only data. We will replace this multiple times. No need to upload anymore.
+trajectoryRoutes.post('/replace', async (req, res) => {
+  try {
+    setInterval(() => {
+      run();
+      console.log('Uploaded!');
+    }, 1000);
+  } catch (error) {
+    console.log(e);
+  }
+});
+
+trajectoryRoutes.get('/getData', async (req, res) => {
+  try {
+    setInterval(async () => {
+      let data = await Trajectory_raw.find({});
+      // console.log(data[0].data);
+      let data_sanitized = await Trajectory_sanitized.find({});
+      // console.log(data_sanitized[0].data);
+      fs.writeFileSync('../output_raw.txt', data[0].data.toString());
+      fs.writeFileSync(
+        '../output_sanitized.txt',
+        data_sanitized[0].data.toString()
+      );
+      console.log('Got new data!');
+    }, 500);
+  } catch (e) {
+    console.log(e);
+    res.status(500).send('Server Error');
+  }
+});
+
+trajectoryRoutes.post('/new', async (req, res) => {
+  try {
+    let data = await fs.readFileSync('../data/x_y_bsm_sanitized.txt', 'utf8');
+    const newTrajectory_raw = new Trajectory_sanitized({
+      name: 'only data',
+      data: data,
+    });
+    await newTrajectory_raw.save();
+    res.json({ data });
+  } catch (e) {
+    console.log(e);
+    res.status(500).send('Server Error');
+  }
+});
+
 // trajectoryRoutes.post('/', async (req, res) => {
 //   try {
-//     await fs.readFile('../x_y_bsm.txt', 'utf8', async (err, data) => {
-//       // let raw_data = await readTextFile('../../x_y_bsm.txt');
-//       const newTrajectory_raw = new Trajectory_raw({
-//         name: 'only data',
-//         data: data,
-//       });
-//       const trajectory_raw = await newTrajectory_raw.save();
-//       res.json(trajectory_raw);
-//       // console.log(dataText);
-//     });
 //     //   await fs.readFile('../../x_y_bsm_sanitized.txt', 'utf8', async (err, data) => {
 //     //     // let raw_data = await readTextFile('../../x_y_bsm.txt');
 //     //     const newTrajectory_sanitized = new Trajectory_sanitized({ data: data });
@@ -43,82 +81,6 @@ let fs = require('fs');
 //     res.status(500).send('Server Error');
 //   }
 // });
-
-async function run() {
-  let data = await fs.readFileSync('../x_y_bsm.txt', 'utf8');
-  await Trajectory_raw.replaceOne(
-    { name: 'only data' },
-    { name: 'only data', data: data }
-  );
-  // console.log(data)
-  // Trajectory_raw.insertOne(
-  //   { name: 'only data' },
-  //   { name: 'only data', data: data }
-  // );
-  // let newTrajectory_raw = new Trajectory_raw({
-  //   name: 'only data',
-  //   data: data,
-  // });
-  // await newTrajectory_raw.save();
-  // console.log(data.toString());
-  // res.json({ msg: data });
-}
-// for (i = 1; i <= 100; i++) {
-
-// }
-trajectoryRoutes.post('/replace', async (req, res) => {
-  try {
-    setInterval(() => {
-      run();
-      console.log('Hello!');
-    }, 1000);
-  } catch (error) {
-    console.log(e);
-  }
-});
-
-trajectoryRoutes.get('/getData', async (req, res) => {
-  try {
-    setInterval(async () => {
-      let data = await Trajectory_raw.find({});
-      console.log(data[0].data);
-      fs.writeFileSync('../output.txt', data[0].data.toString());
-    }, 1000);
-  } catch (e) {
-    console.log(e);
-    res.status(500).send('Server Error');
-  }
-});
-
-trajectoryRoutes.post('/new', async (req, res) => {
-  try {
-    let data = await fs.readFileSync('../hello.txt', 'utf8');
-    const newTrajectory_raw = new Trajectory_raw({
-      name: 'only data',
-      data: data,
-    });
-    await newTrajectory_raw.save();
-    res.json({ data });
-  } catch (e) {
-    console.log(e);
-    res.status(500).send('Server Error');
-  }
-});
-
-trajectoryRoutes.post('/', async (req, res) => {
-  try {
-    //   await fs.readFile('../../x_y_bsm_sanitized.txt', 'utf8', async (err, data) => {
-    //     // let raw_data = await readTextFile('../../x_y_bsm.txt');
-    //     const newTrajectory_sanitized = new Trajectory_sanitized({ data: data });
-    //     const trajectory_sanitized = await newTrajectory_sanitized.save();
-    //     res.json(trajectory_sanitized);
-    //     // console.log(dataText);
-    //   })
-  } catch (e) {
-    console.log(e);
-    res.status(500).send('Server Error');
-  }
-});
 
 trajectoryRoutes.get('/show', async (req, res) => {
   try {

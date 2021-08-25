@@ -1,4 +1,4 @@
-from generate_path import G_pro
+# from generate_path import G_pro
 import threading
 import osmnx as ox
 from matplotlib import animation
@@ -56,8 +56,8 @@ def run_map_init():
 def run_path_live():
     # read data
     # ---------------------------------------------------------------------------------------
-    bsm_file = "./output.txt"
-    sanitized_bsm_file = "./x_y_bsm_sanitized_test.txt"
+    bsm_file = "./output_raw.txt"
+    sanitized_bsm_file = "./output_sanitized.txt"
     data_bsm = read_txt_column(bsm_file)
     sanitized_bsm = read_txt_column(sanitized_bsm_file)
 
@@ -69,9 +69,11 @@ def run_path_live():
     # ax.scatter(x[0], y[0], s=70, label='Start', c='g', marker='*')
 
     plt.plot(s_x[::5], s_y[::5], '+', mfc='none',
-             label='EKF Position', c='k', markersize=5)
+             #  label='EKF Position',
+             c='k', markersize=5)
     plt.plot(x[::10], y[::10], 'o', mfc='none',
-             label='GPS Measurements', c='r', markersize=5)
+             #  label='GPS Measurements',
+             c='r', markersize=5)
 
     # plt.plot(s_x[-1], s_y[-1], 's', label='EKF Goal', c='r', markersize=10)
     # plt.plot(x[-1], y[-1], 'X',  label='Goal', c='b', markersize=10)
@@ -188,6 +190,6 @@ if __name__ == "__main__":
     from livereload import Server
     server = Server(app.wsgi_app)
     # server.watch('x_y_bsm_sanitized_test.txt')
-    server.watch('output.txt')
-    server.watch('x_y_bsm_sanitized_test.txt')
+    server.watch('output_raw.txt')
+    server.watch('output_sanitized.txt')
     server.serve(open_url_delay=0, debug=False)

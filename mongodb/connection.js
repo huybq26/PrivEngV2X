@@ -6,12 +6,12 @@ async function main() {
     'mongodb+srv://huybq:huy26062002@cluster0.1f7ja.mongodb.net/myFirstDatabase?retryWrites=true&w=majority';
   const client = new MongoClient(uri);
 
-  try {
-    await client.connect();
-    await readTextFile('../x_y_bsm_sanitized_test.txt');
-  } catch (e) {
-    console.log(e);
-  }
+  // try {
+  //   await client.connect();
+  //   await readTextFile('../x_y_bsm_sanitized_test.txt');
+  // } catch (e) {
+  //   console.log(e);
+  // }
 }
 
 function readTextFile(fileName) {

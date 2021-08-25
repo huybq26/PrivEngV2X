@@ -19,7 +19,7 @@ def read_txt_column(data_name, f_row='delete'):
 
 # read data
 # ---------------------------------------------------------------------------------------
-bsm_file = "./x_y_bsm_test.txt"
+bsm_file = "./output.txt"
 sanitized_bsm_file = "./x_y_bsm_sanitized_test.txt"
 data_bsm = read_txt_column(bsm_file)
 sanitized_bsm = read_txt_column(sanitized_bsm_file)
@@ -28,6 +28,7 @@ x = data_bsm[:, 0]
 y = data_bsm[:, 1]
 s_x = sanitized_bsm[:, 0]
 s_y = sanitized_bsm[:, 1]
+print("Loading map!")
 
 # draw a figure of trajectory with map
 # ---------------------------------------------------------------------------------------
@@ -35,7 +36,7 @@ s_y = sanitized_bsm[:, 1]
 G_pro = joblib.load('NTU_project_map_filled.pkl')
 fig, ax = ox.plot_graph(G_pro, show=False, close=False,
                         node_color='#16d2d9', bgcolor="#ffffff")
-
+print("Loaded map!")
 # draw_trajectory
 ax.scatter(s_x[0], s_y[0], s=70, label='EKF Start', c='y', marker='o')
 ax.scatter(x[0], y[0], s=70, label='Start', c='g', marker='*')
