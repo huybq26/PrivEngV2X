@@ -20,10 +20,10 @@
         <a href="index.html"><i class="fas fa-code"></i><b> PrivEngV2X</b> </a>
       </h1>
       <ul>
-        <li><a href="About.html">About</a></li>
+         <li><a href="About.html">About</a></li>
         <li><a href="tutorial.html">Tutorial</a></li>
-        <li><a href="input.html">Input Data</a></li>
-        <li><a href="main.html">Trajectory Results</a></li>
+        <li><a href="live.html">Live Trajectory</a></li>
+        <li><a href="input.html">Offline Mode</a></li>
         <li><a href="register.html">Register</a></li>
         <li><a href="login.html">Login</a></li>
       </ul>
@@ -31,42 +31,79 @@
     <section>
       <div class="bright-overlay">
           <br><br><br><br>
-          <p class= "about-title">How to make things work?</p>
+          <p class= "about-title" style="display: flex;justify-content: center;">How to make things work?</p>
+          <br>
           <p class = "about-description">
-            <br>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent finibus dolor eget nunc pharetra auctor. Fusce tempus
-            felis sagittis, ultrices purus sit amet, sodales libero. Ut scelerisque malesuada leo sed tempor. Curabitur commodo et
-            nulla eu auctor. Donec sed eros nisi. Morbi eleifend rhoncus elit a varius. Aenean id est commodo, tincidunt nisl eget,
-            commodo sapien. 
-            <!-- <ul>
-            <li>In laoreet sem eu libero sollicitudin posuere. Nullam pulvinar ac augue id bibendum. </li>
-            <li>Sed hendrerit, lectus
-               a tempor semper, urna tellus malesuada nibh, quis finibus augue tellus eget enim. </li>
-            <li>Nam tincidunt leo ac dolor scelerisque, non facilisis lacus sagittis. </li>
-            </ul> -->
-            In cursus ex aliquam, porttitor arcu a, egestas diam. Morbi faucibus cursus
-            est, vitae mollis mi pulvinar eu. Suspendisse maximus molestie erat. Aliquam aliquet ipsum vitae leo interdum, sit amet
-            sollicitudin massa rhoncus. Mauris ut sem at nisl imperdiet congue ac quis quam.
-            <br> <br>
+              <h3 style = "margin-left: 50px;"><u>Configure our project for the first time</u></h3>
+          </p>
 
-            <img src="https://cdn3.vectorstock.com/i/1000x1000/63/02/route-dashboard-futuristic-route-ui-gps-tracking-vector-27126302.jpg" alt="map" id="map">
+          <p class = "about-description">
+            You will need two machines: One for receiving data from the vehicle and uploading to the database, and one to retrieve data 
+            from the database and run the web page. 
             <br>
-            Morbi et aliquet metus, vel ultricies dui. Mauris turpis nulla, commodo quis nisi in, aliquet tristique augue. Ut
-            suscipit, purus et scelerisque finibus, est ipsum bibendum nibh, et pharetra dui felis at odio. Sed sit amet elementum
-            velit. Nam consectetur ante lacu7s, sed sagittis tellus aliquam vel. Vivamus elementum velit sit amet porttitor auctor.
-            Vivamus ac augue vitae lectus auctor blandit. Morbi tristique odio nec arcu pharetra, sit amet malesuada lectus mattis.
-            Sed volutpat erat sed magna efficitur ultricies. Etiam felis ante, vulputate pulvinar urna in, dignissim fringilla
-            nulla. Duis suscipit odio sed ante rhoncus eleifend. In efficitur est eget ipsum aliquam, elementum pulvinar nisl
-            sollicitudin. Phasellus facilisis felis metus, sit amet lobortis purus aliquam eget. Mauris fermentum laoreet nunc vel
-            rutrum.
-      
+            <br>
+            Once you are ready, please follow the instructions below:
+            <br>
+            - Download and extract the code from <a href = "https://drive.google.com/drive/folders/1pvqRzqxvmYUoJtFTZzxOQ_cfaGN6Ws5H?usp=sharing">here</a>.<br>
+            - Make sure you have installed python3 and pip3 on both your machines. Then, in the project directory, run this command line:
+            <br>
+             <b>pip3 install -r requirements.txt</b>
+             <br>
+             This will install all the dependencies needed for all except live mode. <br>
+            (In case of any error, please delete the requirements.txt file and run "<b>pip3 freeze > requirements.txt</b>". After that, run "<b>pip3 install -r requirements.txt</b>").
+            <br><br> Please make sure you also have installed latest version of node and npm on your machine.
+            <br> If not, please download and follow the guides in this <a href = "https://nodejs.org/en/">link</a>.
+            <br> Verify the installation by running <b>npm -v</b>.<br>
+           
+            Suppose you are in the main directory of this project. On the server machine, run these in the command line:<br>
+            - <b>cd mongodb</b><br>
+            - <b>npm install nodemon mongodb mongoose express path body-parser cors config fs</b> (Only need to run in the first time)<br>
+            - <b>nodemon server.js</b><br>
+            If the terminal display: <b>'Listening on port 5000'</b> and <b>'MongoDB Connected ...'</b>, then you are doing well. If not, please check the instruction again. You can close this terminal now.
             
-            Aenean sed ultrices nulla, non lacinia metus. Curabitur tincidunt sodales hendrerit. Fusce hendrerit dictum orci sed
-            sodales.te Curabitur ut hendrerit nulla, ut fermentum est. Donec eu vestibulum tellus. Praesent vehicula libero ac nibh
-            gravida, aliquam auctor mauris varius. Nulla luctus efficitur sapien, in ultricies metus accumsan quis. Integer
-            convallis ligula felis, id tempor erat faucibus eget. Sed vitae eleifend massa, eget lacinia leo.
-            <br><br>
-          </img>
+            <br>
+            <br>
+
+          </p>
+           <h3 style = "margin-left: 50px;"><u>Run PrivEngV2X</u></h3>
+            <p class = "about-description">
+             
+            Once you have completed the installation above, you can now start our web on our localhost.
+            <br>Just type in the terminal this line:
+            <br> <b>python3 app.js</b>
+            <br> If there is no error, you should be directed to the web now. If not, please try to access this <a href = "http://127.0.0.1:5500/">link</a>.
+            <br> You can now use most of the functions, which include offline mode, except live mode.
+
+          </p>
+          <br>
+          </p>
+           <h3 style = "margin-left: 50px;"><u>Run Live Mode</u></h3>
+            <p class = "about-description">
+             Last but not least, live mode. Please make sure you have completed all two previous steps.
+             <br>
+            <br>You need to create a new terminal in the project directory. Just type in the terminal these lines:
+            <br> <b>cd mongodb</b>
+            <br> <b>nodemon server.js</b>
+            <br> If there is no error, you should see <b>'Listening on port 5000'</b> and <b>'MongoDB Connected ...'</b>.
+            <br>
+            <br> Now, on the web, go to Live Trajectory page (or you can click this <a href = "http://127.0.0.1:5500/live.html">link</a>.)
+            <br>
+            Now, we would define the machine that receives data from the web is the <b>server machine</b>, and the machine that displays the web to the client is <b>client machine</b>.
+            <br>
+            <br>On your server machine, click the <b>first green button: "Upload data to database"</b>.
+            <br>On your client machine, click the <b>second blue buttonL: "Get data from database"</b>. 
+            <br>You should see the page is loading continuously, and the terminal is displaying a long list of "Uploaded!" and "Got data".
+            <br>
+            <br>
+            This terminal is solely for live mode trajectory. 
+            <br>If you don't use it, please stop the mongodb process by Ctrl + C in the terminal.
+            <br>
+            <br>
+            
+            <br> <i>Still have problems after multiple tries? Drop me an email at: HUY009@e.ntu.edu.sg</i>
+            <br>
+            <br>
+          </p>
       </div>
     </section>
   </body>

@@ -98,6 +98,8 @@ def input():
         os.remove("./static/path.jpg")
     if os.path.isfile('./static/result.mp4'):
         os.remove("./static/result.mp4")
+    if os.path.isfile('./static/live.jpg'):
+        os.remove("./static/live.jpg")
     if os.path.isfile('x_y_bsm_sanitized.txt'):
         os.remove("x_y_bsm_sanitized.txt")
     if os.path.isfile('x_y_bsm.txt'):
