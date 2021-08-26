@@ -1,1 +1,0 @@
-The goal now is to loaded the map only the first time and not loaded that the remaining time.
