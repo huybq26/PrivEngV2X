@@ -11,7 +11,7 @@ You will need to install the required Python libraries in order to run this proj
 
 **Full guide:**
 
-Configure our project for the first time
+### Configure our project for the first time
 
 
 You will need two machines: One for receiving data from the vehicle and uploading to the database, and one to retrieve data from the database and run the web page.
@@ -22,9 +22,9 @@ Once you are ready, please follow the instructions below:
 
 - Make sure you have installed python3 and pip3 on both your machines. Then, in the project directory, run this command line:
 
-pip3 install -r requirements.txt
+### pip3 install -r requirements.txt
 
-This will install all the dependencies needed for all except live mode.
+### This will install all the dependencies needed for all except live mode.
 
 (In case of any error, please delete the requirements.txt file and run "pip3 freeze > requirements.txt". After that, run "pip3 install -r requirements.txt").
 
@@ -38,48 +38,52 @@ Verify the installation by running npm -v.
 Open a new terminal (we still keep anaconda terminal). Suppose you are in the main directory of this project. On the server machine, run these in the command line:
 
 
-- cd mongodb
+### cd mongodb
 
-- npm install nodemon mongodb mongoose express path body-parser cors config fs (Only need to run in the first time)
+### npm install nodemon mongodb mongoose express path body-parser cors config fs (Only need to run in the first time)
 
-- node server.js
+### node server.js
 
 If the terminal display: 'Listening on port 5000' and 'MongoDB Connected ...', then you are doing well. If not, please check the instructions again. You can close this terminal now.
 
 
 
-Run PrivEngV2X
+### Run PrivEngV2X
 
 
 Once you have completed the installation above, you can now start our web on our localhost.
 
 Just type in the conda terminal this line:
 
-conda config --prepend channels conda-forge
+### conda config --prepend channels conda-forge
 
-conda create -n ox --strict-channel-priority osmnx
+### conda create -n ox --strict-channel-priority osmnx
 
-pip install flask
+### pip install flask
 
-pip install livereload
+### pip install livereload
 
-python3 app.py 
+### python3 app.py 
+
 
 If there is no error, you should be directed to the web now. If not, please try to access this link.
 
 You can now use most of the functions, which include offline mode, except live mode.
 
 
-Run Live Mode
+### Run Live Mode
+
 
 Last but not least, live mode. Please make sure you have completed all two previous steps.
 
 
 You need to create a new terminal in the project directory. Just type in the terminal these lines:
 
-cd mongodb
 
-node server.js
+### cd mongodb
+
+### node server.js
+
 
 If there is no error, you should see 'Listening on port 5000' and 'MongoDB Connected ...'.
 
