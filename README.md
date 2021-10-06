@@ -1,8 +1,10 @@
 # PrivEngV2X
 
-A website of a project on driver's behaviors using Machine Learning and Deep Learning techniques. With only the input data of starting location, heading, speed and acceleration in each second, this model can predict the location based on x and y direction in every second of the journey.
+NTU Summer Project: Privacy-aware service provisioning in V2X networks. 
 
-Developed a backend system using NodeJS, MongoDB Database and Python for a web application to receive location data continuously from a moving vehicle in real time, which will later be processed by deep learning model and displayed on frontend map with little delay.
+A website of a project on driver's behaviors using Machine Learning and Deep Learning techniques. With only the input data of starting location, heading, speed and acceleration in each second, this model can predict the location based on x and y direction in every second of the journey, without using GPS.
+
+This web application make use of a backend system using NodeJS, MongoDB Database and Flask (Python) to receive location data continuously from a moving vehicle in real time, which will later be processed by deep learning model and displayed on frontend map with little delay.
 
 For demo purpose, please find your data attached in the sample_data folder.
 
