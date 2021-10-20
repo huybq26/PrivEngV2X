@@ -20,7 +20,7 @@ You will need two machines: One for receiving data from the vehicle and uploadin
 
 Once you are ready, please follow the instructions below:
 
-- Download and extract the code from here.
+- Download and extract the code from this repository.
 
 - Make sure you have installed python3 and pip3 on both your machines. Then, in the project directory, run this command line:
 
