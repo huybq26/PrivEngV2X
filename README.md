@@ -105,3 +105,5 @@ This terminal is solely for live mode trajectory.
 
 If you don't use it, please stop the mongodb process by Ctrl + C in the terminal.
 
+
+
